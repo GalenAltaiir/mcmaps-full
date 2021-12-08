@@ -1,0 +1,305 @@
+@import '../general/header.scss';
+@import '../general/footer.scss';
+@import '../general/config.scss';
+@import '../general/typography.scss';
+
+
+
+main{
+    .spotlight{
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+        background: $secondary;
+        margin: 14px;
+        margin-top: 90px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        text-transform: uppercase;
+        text-align: center;
+
+        .cover-link {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            top: 0;
+        }
+
+        img{
+            aspect-ratio: 16/9; // only works on latest browsers, but it's a good fallback.
+            width: 100%; 
+            
+        }
+        .spot-image{
+            grid-column: 1/-1;
+            .label{
+                padding: 0;
+                margin: 0;
+                position: absolute;
+                bottom: 100%;
+                background: $primary;
+                padding: 5px;
+            }
+        }
+        .spot-author{
+            color: white;
+            text-transform: none;
+        }
+        .spot-date, .spot-description{
+            display: none;
+        }
+
+    }
+    
+    .label-long{
+        margin-top: 50px;
+        background-color: $secondary;
+        width: 100%;
+    }
+
+    .label-long-title{
+        margin: 0;
+        background: $primary;
+        width: 60vw;
+        padding: 10px;
+    }
+
+    .map-preview-container{
+        text-decoration: none;
+        color: white;
+    }
+
+    .map-preview{
+        margin-left: 14px;
+        margin-right: 14px;
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        background: $bg-alt;
+
+        img{
+            width: 100%;
+            aspect-ratio: 16/9;
+            grid-row: 1/-1;
+        }
+
+        div{
+            display: grid;
+            .map-title, .map-author, .map-date .map-description{
+                row-gap: 0px;
+                column-gap: 0px;
+            }
+            
+            .map-title{
+                text-transform: uppercase;
+                grid-row-start: 1;
+                justify-self: center;
+            }
+
+            .map-author, .map-date{
+                font-size: .3rem;
+                justify-self: center;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+            .map-description{
+            display: none;
+        }
+    }
+
+}
+// TABLET & DESKTOP
+
+@media only screen and (min-width: $tablet) {
+    main{
+        .spotlight{
+
+            
+            .spot-title{
+                grid-column: 1/-1;
+            }
+
+            .spot-author{
+                grid-column: 1/-1;
+                margin: 0;
+                font-size: .4rem;
+            }
+
+            .spot-description{
+                display: grid;
+                grid-column: 1/-1;
+                text-transform: none;
+                margin: 15px;
+            }
+        }
+        
+        .latest-maps, .updated-maps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            .map-preview {
+                grid-template-columns: auto;
+            }
+
+            .map-description {
+                display: grid;
+                font-size: .4rem;
+                text-transform: none;
+                text-align: left;
+                margin: 25px;
+                grid-column: 1/-1;
+            }
+
+
+            .label-long {
+                grid-column: 1/-1;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $desktop) {
+    body{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas: 
+        "head head head head head head head head head head head head"
+        ".... main main main main main main main main main main ...."
+        "foot foot foot foot foot foot foot foot foot foot foot foot"
+        ;
+    }
+
+    header{
+        grid-area: head;
+    }
+
+    main{
+        grid-area: main;
+    }
+
+    footer{
+        grid-area: foot;
+    }
+    main{
+
+        .spotlight {
+            grid-template-columns: repeat(4, 1fr);
+            .spot-image {
+                .label {
+                    padding: 0;
+                    margin: 0;
+                    position: absolute;
+                    bottom: 100%;
+                    background: $primary;
+                    padding: 5px;
+                }
+            }
+            
+            .spot-title {
+                color: white;
+                grid-column: 1/-1;
+                padding: 0;
+                margin: 0;
+            }
+
+            .spot-author{
+                color: white;
+                font-size: 0.35rem;
+                grid-column: 3/4;
+                text-align: left;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .spot-date{
+                padding: 0;
+                margin: 0;
+                text-align: right;
+                margin-right: 5px;
+                display: grid;
+                font-size: .35rem;
+                text-transform: none;
+                grid-column: 2/3;
+            }
+
+        
+        }
+
+        .latest-maps,
+        .updated-maps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            .label-long{
+                grid-column: 1/-1;
+            }
+        }
+        
+        .map-preview {
+            grid-template-columns: auto;
+
+
+            div{
+                display: grid;
+
+                .map-title,
+                .map-author,
+                .map-date .map-description {
+                    row-gap: 0px;
+                    column-gap: 0px;
+                }
+
+                .map-title {
+                    text-transform: uppercase;
+                    grid-row-start: 1;
+                    justify-self: center;
+                }
+
+                .map-author,
+                .map-date {
+                    font-size: .3rem;
+                    justify-self: center;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            .map-description {
+                display: grid;
+                font-size: .4rem;
+                padding: 5px;
+                margin: 10px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $desktop-xl) {
+    body {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... .... main main main main main main main main .... ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+        main{
+            .latest-maps,
+            .updated-maps {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+
+                .label-long {
+                    grid-column: 1/-1;
+                }
+            }
+        }
+    }
+}
+
+    
+    
+    
+    
+    
+    

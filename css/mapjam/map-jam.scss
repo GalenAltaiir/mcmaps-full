@@ -1,0 +1,155 @@
+@import '../general/header.scss';
+@import '../general/footer.scss';
+@import '../general/config.scss';
+@import '../general/typography.scss';
+
+body {
+    display: grid;
+
+    @media only screen and (min-width: $desktop) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... main main main main main main main main main main ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+
+        header {
+            grid-area: head;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: foot;
+        }
+    }
+
+    @media only screen and (min-width: $desktop-xl) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... .... main main main main main main main main .... ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+    }
+
+    main{
+        h2{
+            text-align: center;
+        }
+        img{
+            justify-self: center;
+            width: 80%;
+            border-bottom : 2px solid $primary
+        }
+
+        .event-container{
+            display: grid;
+            grid-template-columns: auto;
+
+            .event-date, .event-info{
+                
+                text-align: center;
+                padding: 0;
+                margin-top: 7px;
+                p:nth-child(1){
+                    background-color: $primary;
+                    padding: 15px;
+                    row-gap: 0;
+                    margin: 0;
+                }
+                
+                p:nth-child(2){
+                    background: $secondary;
+                    margin: 0;
+                    padding: 15px;
+                }
+            }
+
+            .event-apply{
+                text-align: center;
+                padding: 0;
+                margin-top: 7px;
+
+                p:nth-child(1) {
+                    background-color: $primary;
+                    padding: 15px;
+                    row-gap: 0;
+                    margin: 0;
+                }
+
+                .apply-details{
+                    p:nth-child(1) {
+                        background-color:$secondary;
+                    }
+                    background: $secondary;
+                    padding-bottom: 15px;
+                }
+            }
+
+            .event-judges, .event-prizes{
+                margin-top: 7px;
+                p{
+                    text-align: center;
+                    background-color: $primary;
+                    padding: 15px;
+                    row-gap: 0;
+                    margin: 0;
+                }
+
+                ul{
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                    font-size: .55rem;
+                    padding-top: 7px;
+                    background: $secondary;
+
+                    li{
+                        padding: 5px;
+                    }
+                }
+            }
+
+            .event-winner {
+                text-align: center;
+            }
+
+            .event-map-download{
+                text-align: center;
+                justify-self: center;
+                max-width: 400px;
+            }
+        }
+
+        @media only screen and (min-width: $tablet){
+            .event-container{
+                margin: 20px;
+                grid-template-columns: auto;
+
+                h2, .event-date, .event-info, .event-apply{
+                    grid-column: 1/-1;
+                }
+
+                .event-subcontainer{
+                    background: $secondary;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr); 
+                    margin-top: 7px;
+
+                    .event-judges{
+                        margin: 0;
+                        border-right: 3.5px solid $bg;
+                    }
+                    .event-prizes {
+                        margin: 0;
+                        border-left: 3.5px solid $bg;
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+@import '../general/header.scss';
+@import '../general/footer.scss';
+@import '../general/config.scss';
+@import '../general/typography.scss';
+
+body {
+    display: grid;
+
+    @media only screen and (min-width: $desktop) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... main main main main main main main main main main ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+
+        header {
+            grid-area: head;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: foot;
+        }
+    }
+
+    @media only screen and (min-width: $desktop-xl) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... .... main main main main main main main main .... ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+    }
+}
+
+main{
+    .logos{
+        margin: 15px;
+        background: $bg-alt;
+        h1{
+            font-size: .6rem;
+            margin: 0;
+            background: $primary;
+            text-align: center;
+            grid-column: 1/-1;
+        }
+
+        display: grid;
+        grid-template-columns:repeat(3, 1fr);
+        .logo-preview{
+            display: grid;
+            align-content: center;
+            background: $secondary;
+            margin: 5px;
+            aspect-ratio: 1/1;
+            img{
+                width: calc(100% - 50px);
+                margin: 25px;
+            }
+
+            p{
+                text-align: center;
+            }
+        }
+    }
+
+    .usage-guidelines{
+        margin: 15px;
+        h2{
+            text-align: center;
+            background: $primary;
+            font-size: .6rem;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        ul{
+            margin: 0;
+            padding-top: 15px;
+            background: $bg-alt;
+            font-size: .45rem;
+            li{
+                padding: 10px;
+            }
+        }
+    }
+
+    @media only screen and (min-width: $tablet) {
+        .logos{
+            h1{
+                font-size: .8rem;
+                padding: 5px;
+            }
+        }
+
+        .usage-guidelines {
+            h2 {
+                font-size: .8rem;
+                padding: 5px;
+            }
+        }
+    }
+
+    @media only screen and (min-width: $desktop) {
+        
+        .logos {
+            
+            display: grid;
+            grid-template-columns:repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            
+            h1 {
+                font-size: .8rem;
+                padding: 5px;
+                height: 5vh;
+            }
+        }
+
+        .usage-guidelines {
+            h2 {
+                font-size: .8rem;
+                padding: 5px;
+            }
+        }
+    }
+}
