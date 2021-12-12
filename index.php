@@ -1,56 +1,64 @@
+<?php
+require 'functions_api.php';
+$prefix = "/_Projects/mcmaps-full/";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">        
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
     <title>MCMaps | Minecraft Maps</title>
-    <link rel="shortcut icon" type="image/jpg" href="/img/site-icon.ico"/>
+    <link rel="shortcut icon" type="image/jpg" href="img/site-icon.ico" />
     <link rel="stylesheet" href="css/index/index.css">
 
     <script src="https://kit.fontawesome.com/9880171930.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="header">
-        <a href="/index.html" class="nav-logo"><img src="/img/logo.png" alt="logo"></a>
+        <a href="<?php echo $prefix; ?>index.php" class="nav-logo"><img src="img/logo.png" alt="logo"></a>
         <nav class="navbar">
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="/index.html" class="nav-link">Latest <b>|</b></a>
+                    <a href="<?php echo $prefix; ?>index.php" class="nav-link">Latest </a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">
-                        Map Categories <i class ="fa fa-chevron-down"></i> <b>|</b>
-                        <span class = "dropdown">
-                            <a href="/pages/maps/all-maps.html" class="nav-link">All Maps</a>
-                            <a href="/pages/maps/puzzle.html" class="nav-link">Puzzle</a>
-                            <a href="/pages/maps/parkour.html" class="nav-link">Parkour</a>
-                            <a href="/pages/maps/minigames.html" class="nav-link">Minigames</a>  
-                            <a href="/pages/maps/maze.html" class="nav-link">Maze</a>  
-                            <a href="/pages/maps/pvp.html" class="nav-link">PvP</a>  
-                            <a href="/pages/maps/horror.html" class="nav-link">Horror</a>
+                        Map Categories <i class="fa fa-chevron-down"></i>
+                        <span class="dropdown">
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php" class="nav-link">All Maps</a>
+                            <a href="/pages/maps/puzzle.php" class="nav-link">Puzzle</a>
+                            <a href="/pages/maps/parkour.php" class="nav-link">Parkour</a>
+                            <a href="/pages/maps/minigames.php" class="nav-link">Minigames</a>
+                            <a href="/pages/maps/maze.php" class="nav-link">Maze</a>
+                            <a href="/pages/maps/pvp.php" class="nav-link">PvP</a>
+                            <a href="/pages/maps/horror.php" class="nav-link">Horror</a>
+                            <a href="/pages/maps/other.php" class="nav-link">Other</a>
                         </span>
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/map-jam.html" class="nav-link">Map Jam <b>|</b></a>
+                    <a href="<?php echo $prefix; ?>pages/map-jam.php" class="nav-link">Map Jam</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/verified.html" class="nav-link">Verified <b>|</b></a>
+                    <a href="/pages/verified.php" class="nav-link">Verified</a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">
-                        Other  <i class ="fa fa-chevron-down"></i> <b>|</b>
-                        <span class = "dropdown">
-                            <a href="/pages/upload-a-map.html" class="nav-link">Upload a Map</a>
-                            <a href="/pages/update-a-map.html" class="nav-link">Update a Map</a>
+                        Other <i class="fa fa-chevron-down"></i>
+                        <span class="dropdown">
+                            <a href="/pages/upload-a-map.php" class="nav-link">Upload a Map</a>
+                            <a href="/pages/update-a-map.php" class="nav-link">Update a Map</a>
                         </span>
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/search.html" class="nav-link">Search</a>
+                    <a href="/pages/search.php" class="nav-link">Search</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -62,97 +70,228 @@
     </header>
 
     <main>
-        <section class = "spotlight">
-            <a href="/pages/map?=" class = "cover-link"></a>
-                <div class="spot-image">
-                    <img src="/img/spot.jpg" alt="spotlight-image">
-                    <h2 class="label">SPOTLIGHT</h2>
-                </div>
-
-            <p class="spot-title">The Great Fall</p>
-            <p class="spot-date">14 Nov, 2021</p>
-            <p class="spot-author">by AmirKaka</p>
-            <p class="spot-description">Parkour around a beautiful waterfall in a new fast-paced parkour map with 40 levels of medium difficulty parkour, Can you reach the top of the waterfall?</p>
-        </section>
-        
+        <!-- SPOTLIGHT SECTION - FETCH THE CURRENT SPOTLIGHT MAP -->
+        <?php
+        $id =  getSpotlightId();
 
 
-        <section class = "latest-maps">
-            <div class="label-long">
-                <h3 class = "label-long-title">LATEST MAPS</h3>
+        // create & initialize a curl session
+        $curl = curl_init();
+
+        // set our url with curl_setopt()
+        curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
+
+        // return the transfer as a string, also with setopt()
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        // curl_exec() executes the started curl session
+        // $output contains the output string
+        $output = curl_exec($curl);
+
+        // close curl resource to free up system resources
+        // (deletes the variable made by curl_init)
+        curl_close($curl);
+        /* var_dump(json_decode($output, true)); */
+
+        $data = json_decode($output, true);
+        // ARRAY SETTING
+        $arrayLength = count($data["entries"]); // offset by 1 as arrays start at 0;
+        $i = 0;
+        while ($i < $arrayLength) {
+            $fetched_id = $data["entries"][$i]["_id"];
+            if ($fetched_id == $id) {
+                $main_image = $prefix . $data["entries"][$i]["MainImage"]["path"];
+                $spot_name = $data["entries"][$i]["MapName"];
+                $spot_author = $data["entries"][$i]["Author"];
+                $spot_desc = $data["entries"][$i]["ShortDescription"];
+                $spot_updated = $data["entries"][$i]["_modified"];
+            }
+            $i++;
+        }
+        ?>
+        <section class="spotlight">
+            <a href="pages/map.php?name=<?php echo $spot_name; ?>" class="cover-link"></a>
+            <div class="spot-image">
+                <img src='<?php echo $main_image; ?>' alt="spotlight-image">
+                <h2 class="label">SPOTLIGHT</h2>
             </div>
-            
 
-            <a class = "map-preview-container" href="#">
+            <p class="spot-title"><?php echo $spot_name; ?></p>
+            <p class="spot-date"><?php echo date('d M, Y', $spot_updated); ?></p>
+            <p class="spot-author"><?php echo $spot_author; ?></p>
+            <p class="spot-description"><?php echo $spot_desc; ?></p>
+        </section>
+
+        <?php
+        // create & initialize a curl session
+        $curl = curl_init();
+        // set our url with curl_setopt()
+        curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
+        // return the transfer as a string, also with setopt()
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // curl_exec() executes the started curl session
+        // $output contains the output string
+        $output = curl_exec($curl);
+        // close curl resource to free up system resources
+        // (deletes the variable made by curl_init)
+        curl_close($curl);
+        /* var_dump(json_decode($output, true)); */
+        $data = json_decode($output, true);
+        // ARRAY SETTING
+        $arrayLength = count($data["entries"],); // offset by 1 as arrays start at 0;
+        $map_index = 0;
+
+        $creation_time = array();
+        // PUT ALL THE CREATION TIMES INTO A SEPERATE ARRAY
+        while ($map_index < $arrayLength) {
+            $map_creation = $data["entries"][$map_index]["_created"];
+            /* echo "- created at: " . date('G:i A', $map_creation) . "<br>"; */
+            array_push($creation_time, $map_creation);
+            $map_index++;
+        }
+
+        rsort($creation_time); // SORT TO SHOW MOST RECENT FIRST
+
+        $map_index = 0; // reset index
+        // PRINT ARRAY MATCHING SORTED CREATION TIME
+        ?> <section class="latest-maps">
+            <div class="label-long">
+                <h3 class="label-long-title">LATEST MAPS</h3>
+            </div>
+
+            <?php
+            while ($map_index < $arrayLength) {
+                for ($i = 0; $i < $arrayLength; $i++) {
+                    if ($data["entries"][$i]["_created"] === $creation_time[$map_index]) {
+                        $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
+            ?>
+            <a class="map-preview-container" href="#">
                 <div class="map-preview">
-                    <img src="/img/spot.jpg" alt="map-image">
+                    <img src="<?php echo $map_main_img; ?>" alt="map-image">
                     <div>
-                        <p class="map-title">The Great Fall</p>
-                        <p class="map-author map-date">by AmirKaka • 14 Nov, 2021</p>
-                        <p class="map-description">Parkour around a beautiful waterfall in a new fast-paced parkour map with 40 levels of medium difficulty parkour, Can you reach the top of the waterfall?</p>
+                        <p class="map-title"><?php echo $data["entries"][$i]["MapName"]; ?></p>
+                        <p class="map-author map-date">
+                            <?php echo $data["entries"][$i]["Author"] . " • " . date('d M, Y', $data["entries"][$i]["_created"]); ?>
+                        </p>
+                        <p class="map-description"><?php echo $data["entries"][$i]["ShortDescription"]; ?></p>
                     </div>
                 </div>
             </a>
-
-            
+            <?php
+                    }
+                }
+                $map_index++;
+            }
+            ?>
 
         </section>
 
-        <section class = "updated-maps">
+        <?php
+        // create & initialize a curl session
+        $curl = curl_init();
+        // set our url with curl_setopt()
+        curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
+        // return the transfer as a string, also with setopt()
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // curl_exec() executes the started curl session
+        // $output contains the output string
+        $output = curl_exec($curl);
+        // close curl resource to free up system resources
+        // (deletes the variable made by curl_init)
+        curl_close($curl);
+        /* var_dump(json_decode($output, true)); */
+        $data = json_decode($output, true);
+        // ARRAY SETTING
+        $arrayLength = count($data["entries"],); // offset by 1 as arrays start at 0;
+        $map_index = 0;
+
+        $updated_time = array();
+        // PUT ALL THE CREATION TIMES INTO A SEPERATE ARRAY
+        while ($map_index < $arrayLength) {
+            $map_update = $data["entries"][$map_index]["_modified"];
+            /* echo "- created at: " . date('G:i A', $map_creation) . "<br>"; */
+            array_push($updated_time, $map_update);
+            $map_index++;
+        }
+
+        rsort($updated_time); // SORT TO SHOW MOST RECENT FIRST
+
+        $map_index = 0; // reset index
+        // PRINT ARRAY MATCHING SORTED CREATION TIME
+        ?> <section class="updated-maps">
             <div class="label-long">
-                <h3 class = "label-long-title">RECENTLY UPDATED</h3>
+                <h3 class="label-long-title">RECENTLY UPDATED</h3>
             </div>
 
-            <a class = "map-preview-container" href="#">
+            <?php
+            while ($map_index < $arrayLength) {
+                for ($i = 0; $i < $arrayLength; $i++) {
+                    if ($data["entries"][$i]["_modified"] === $updated_time[$map_index]) {
+                        $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
+            ?>
+            <a class="map-preview-container" href="#">
                 <div class="map-preview">
-                    <img src="/img/spot.jpg" alt="map-image">
+                    <img src="<?php echo $map_main_img; ?>" alt="map-image">
                     <div>
-                        <p class="map-title">The Great Fall</p>
-                        <p class="map-author map-date">by AmirKaka • 14 Nov, 2021</p>
-                        <p class="map-description">Parkour around a beautiful waterfall in a new fast-paced parkour map with 40 levels of medium difficulty parkour, Can you reach the top of the waterfall?</p>
+                        <p class="map-title"><?php echo $data["entries"][$i]["MapName"]; ?></p>
+                        <p class="map-author map-date">
+                            <?php echo $data["entries"][$i]["Author"] . " • " . date('d M, Y', $data["entries"][$i]["_created"]); ?>
+                        </p>
+                        <p class="map-description"><?php echo $data["entries"][$i]["ShortDescription"]; ?></p>
                     </div>
                 </div>
             </a>
+            <?php
+                    }
+                }
+                $map_index++;
+            }
+            ?>
 
         </section>
+
+
 
     </main>
 
     <footer>
-        <img src="/img/logo.png" alt="logo">
+        <img src="img/logo.png" alt="logo">
         <div class="footer-container">
             <div class="foot-nav">
-                <a href="index.html" class="nav-link">Latest</a>
-                <a href="/pages/maps/all-maps.html" class="nav-link">All Maps</a>
-                <a href="/pages/verified.html" class="nav-link">Verified</a>
-                <a href="/pages/map-jam.html" class="nav-link">Map Jam</a>
-                <a href="//pages/search.html" class="nav-link">Search</a>
-                <span class = "submenu-foot"><span class = "nav-link">More <i class ="fa fa-chevron-down"></i></span>
-                <span class = "submenu-container-foot">
-                    <a href="/pages/upload-a-map.html" class="nav-link nav-link-sub">Upload a Map</a>
-                    <a href="/pages/update-a-map.html" class="nav-link nav-link-sub">Update a Map</a>
+                <a href="index.php" class="nav-link">Latest</a>
+                <a href="/pages/maps/all-maps.php" class="nav-link">All Maps</a>
+                <a href="/pages/verified.php" class="nav-link">Verified</a>
+                <a href="/pages/map-jam.php" class="nav-link">Map Jam</a>
+                <a href="/pages/search.php" class="nav-link">Search</a>
+                <span class="submenu-foot"><span class="nav-link">More <i class="fa fa-chevron-down"></i></span>
+                    <span class="submenu-container-foot">
+                        <a href="/pages/upload-a-map.php" class="nav-link nav-link-sub">Upload a Map</a>
+                        <a href="/pages/update-a-map.php" class="nav-link nav-link-sub">Update a Map</a>
+                    </span>
                 </span>
+            </div>
+
+            <p>Join our Discord Server</p>
+            <a href='https://discord.gg/EBQt3VrX' class="btn"><i class="fab fa-discord"></i><b> DISCORD</b></a>
+
+            <p>Visit our Friends</p>
+            <span class="referral-container">
+                <a href="https://stickypiston.co/" class="referral">StickyPiston.co</a>
+                <a href="https://www.mccreations.net/" class="referral">MCCreations.net</a>
+                <a href="https://mccontent.net/" class="referral">MCContent.net</a>
             </span>
-        </div>
-            
-        <p>Join our Discord Server</p>
-        <a href ='https://discord.gg/EBQt3VrX' class = "btn"><i class ="fab fa-discord"></i><b> DISCORD</b></a>
-        
-        <p>Visit our Friends</p>
-        <span class = "referral-container">
-            <a href="https://stickypiston.co/" class="referral">StickyPiston.co</a>
-            <a href="https://www.mccreations.net/" class="referral">MCCreations.net</a>
-            <a href="https://mccontent.net/" class="referral">MCContent.net</a>
-        </span>
-            
-            <p class = "disclaimer">
-                <a href="https://www.minecraft.net/">Minecraft</a> was created by <a href="https://www.minecraft.net/">Mojang AB</a>. 
-                <a href="https://www.mcmaps.net/">MCMaps.net</a> is not endorsed or affiliated with <a href="https://www.minecraft.net/">Mojang AB</a>.
+
+            <p class="disclaimer">
+                <a href="https://www.minecraft.net/">Minecraft</a> was created by <a
+                    href="https://www.minecraft.net/">Mojang AB</a>.
+                <a href="https://www.mcmaps.net/">MCMaps.net</a> is not endorsed or affiliated with <a
+                    href="https://www.minecraft.net/">Mojang AB</a>.
             </p>
-            
+
         </div>
-        <p class = "copyright">© 2021 All Rights Reserved | <a href="https://www.mcmaps.net/">MCMaps.net</a></p>
+        <p class="copyright">© 2021 All Rights Reserved | <a href="https://www.mcmaps.net/">MCMaps.net</a></p>
     </footer>
-    <script src="/js/nav.js" async></script>
+    <script src="js/nav.js" async></script>
 </body>
+
 </html>

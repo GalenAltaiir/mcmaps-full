@@ -1,0 +1,239 @@
+@import '../general/header.scss';
+@import '../general/footer.scss';
+@import '../general/config.scss';
+@import '../general/typography.scss';
+body {
+    display: grid;
+
+    @media only screen and (min-width: $desktop) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... main main main main main main main main main main ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+
+        header {
+            grid-area: head;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: foot;
+        }
+    }
+
+    @media only screen and (min-width: $desktop-xl) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            ".... .... main main main main main main main main .... ...."
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+    }
+
+    .no-margin{
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    .btn:hover{
+        transition: all .3s;
+        background: white;
+        color: $primary;
+    }
+
+}
+.label {
+    background: $secondary;
+    text-align: center;
+    padding: 10px;
+    font-size: .65rem;
+    font-weight: 800;
+}
+
+main{
+    position: relative;
+    .header-content{
+        display: grid;
+        position: relative;
+        img{
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            margin-bottom: 24px;
+        }
+        
+        h1{
+            font-size: .9rem;
+            position: absolute;
+            padding-bottom: 6px;
+            padding-top: 6px;
+            margin: 0;
+            width: 100%;
+            left: 0;
+            top: 270px;
+            text-align: center;
+            background: $primary;
+            box-shadow: 0px 0px 10px black;
+            
+        }
+
+        p{
+            justify-self: center;
+            position:relative;
+            padding: 6px;
+            margin: 0;
+            width: 300px;
+            text-align: center;
+            color: $primary;
+            background: white;
+            margin-bottom: 90px;
+        }
+    }
+
+    .additional-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        .label {
+            grid-column: 1/-1;
+        }
+
+        .info {
+            text-align: center;
+        }
+
+    }
+
+    .map-downloads{
+        display: grid;
+        a{
+            text-align: center;
+            margin: 10px 50px 0px 50px;
+            i{
+                float: right;
+            }
+        }
+    }
+
+    .map-info{
+        display: grid;
+        text-align: center;
+        iframe{
+            justify-self: center;
+            width: 100%;
+            min-height: 250px;
+            aspect-ratio: 16/9; // updated browsers only
+        }
+
+        .map-details{
+            padding: 50px;
+            text-align: left;
+            background: $bg-alt;
+            li{
+                
+                list-style-type: unset;
+                font-size: .5rem;
+                margin-left: 15px;
+            }
+
+        }
+    }
+
+    .map-gallery{
+        display: none;
+    }
+
+
+    @media only screen and (min-width: $tablet) {
+        .map-downloads {
+            grid-template-columns: repeat(2, 1fr);
+            .label{
+                grid-column: 1/-1;
+            }
+        }
+
+        .map-info {
+           /*  iframe {
+                justify-self: center;
+                width: 600px;
+                height: 338px;
+                aspect-ratio: 16/9; 
+                width: 100%;
+            } */
+
+            .map-details {
+                text-align: left;
+            }
+        }
+
+        .map-gallery{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            .label{
+                grid-column: 1/-1;
+            }
+            img{
+                width: 100%;
+            }
+        }
+    }
+
+    @media only screen and (min-width: $desktop) {
+        .label{
+            font-size: .6rem;
+        }
+
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+
+        .header-content{
+            grid-column: 1/-1;
+        }
+
+        .map-downloads, .map-gallery, .map-info{
+            grid-column: 1/2;
+        }
+
+        .map-downloads{
+            
+            margin: 0;
+            padding: 0;
+            grid-template-columns: 1fr;
+            .label { 
+                margin: 0;
+                padding: 0;
+                display: grid;
+                justify-content: center;
+                padding: 10px;
+            }
+        }
+
+        .additional-details{
+            margin-left: 10px;
+            .info{
+                background: $bg-alt;
+                margin-top: 5px;
+
+            }
+
+            .label{
+                margin: 0;
+                padding: 0;
+                display: grid;
+                justify-content: center;
+                padding: 10px;
+            }
+            grid-row-start: 2;
+            grid-row-end: 4;
+            grid-column: 2/3;
+            grid-template-columns:  1fr;
+            align-items: center;
+            align-content:flex-start;
+            justify-content: center;
+        }
+    }
+}

@@ -6,6 +6,9 @@
 
 
 main{
+    
+    
+    
     .spotlight{
         grid-template-columns: repeat(2, 1fr);
         position: relative;
@@ -16,6 +19,13 @@ main{
         grid-template-rows: auto 1fr;
         text-transform: uppercase;
         text-align: center;
+        
+        &:hover a{
+            background: black;
+            opacity: .3;
+            transition: all .2s;
+        }
+        
 
         .cover-link {
             position: absolute;
@@ -23,8 +33,9 @@ main{
             height: 100%;
             opacity: 0;
             top: 0;
-        }
 
+        }
+        
         img{
             aspect-ratio: 16/9; // only works on latest browsers, but it's a good fallback.
             width: 100%; 
@@ -67,6 +78,11 @@ main{
     .map-preview-container{
         text-decoration: none;
         color: white;
+        transition: all .3s;
+        &:hover .map-preview{
+            background: $secondary;
+            transition: all .3s;
+        }
     }
 
     .map-preview{
@@ -91,6 +107,7 @@ main{
             }
             
             .map-title{
+                text-align: center;
                 text-transform: uppercase;
                 grid-row-start: 1;
                 justify-self: center;
@@ -106,6 +123,8 @@ main{
 
             .map-description{
             display: none;
+            height: 100px;
+            overflow: hidden;
         }
     }
 
@@ -128,6 +147,7 @@ main{
             }
 
             .spot-description{
+                text-align: center;
                 display: grid;
                 grid-column: 1/-1;
                 text-transform: none;
@@ -146,7 +166,7 @@ main{
                 display: grid;
                 font-size: .4rem;
                 text-transform: none;
-                text-align: left;
+                text-align: center;
                 margin: 25px;
                 grid-column: 1/-1;
             }

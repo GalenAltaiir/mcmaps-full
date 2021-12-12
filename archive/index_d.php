@@ -17,7 +17,7 @@
     $curl = curl_init();
 
     // set our url with curl_setopt()
-    curl_setopt($curl, CURLOPT_URL, "http://localhost/Experiments/Cockpit/cockpit-master/api/collections/get/maps");
+    curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/cockpit-master/api/collections/get/maps");
 
     // return the transfer as a string, also with setopt()
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -53,8 +53,12 @@
     echo "<br> Date Added: " . $data["entries"][0]["DateAdded"];
     echo "<br> File Size: " . $data["entries"][0]["MapFileSize"];
     echo "<br> Social: " . $data["entries"][0]["Social"];
+    echo "<br> UD: " . $data["entries"][1]["_id"];
     echo "<br> Gallery 1 of 2: <img src='/experiments/cockpit/" . $img . "' alt='imghere'>";
     echo "<br> Gallery 2 of 2: <img src='/experiments/cockpit/" . $img2 . "' alt='imghere'>";
+
+
+
     ?>
 
 </body>
