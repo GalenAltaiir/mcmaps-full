@@ -32,13 +32,17 @@ $prefix = "/_Projects/mcmaps-full/";
                         Map Categories <i class="fa fa-chevron-down"></i>
                         <span class="dropdown">
                             <a href="<?php echo $prefix; ?>pages/all-maps.php" class="nav-link">All Maps</a>
-                            <a href="/pages/maps/puzzle.php" class="nav-link">Puzzle</a>
-                            <a href="/pages/maps/parkour.php" class="nav-link">Parkour</a>
-                            <a href="/pages/maps/minigames.php" class="nav-link">Minigames</a>
-                            <a href="/pages/maps/maze.php" class="nav-link">Maze</a>
-                            <a href="/pages/maps/pvp.php" class="nav-link">PvP</a>
-                            <a href="/pages/maps/horror.php" class="nav-link">Horror</a>
-                            <a href="/pages/maps/other.php" class="nav-link">Other</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Puzzle"
+                                class="nav-link">Puzzle</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Parkour"
+                                class="nav-link">Parkour</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Minigames"
+                                class="nav-link">Minigames</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Maze" class="nav-link">Maze</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=PvP" class="nav-link">PvP</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Horror"
+                                class="nav-link">Horror</a>
+                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Other" class="nav-link">Other</a>
                         </span>
                     </span>
                 </li>
@@ -46,19 +50,19 @@ $prefix = "/_Projects/mcmaps-full/";
                     <a href="<?php echo $prefix; ?>pages/map-jam.php" class="nav-link">Map Jam</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/verified.php" class="nav-link">Verified</a>
+                    <a href="pages/verified.php" class="nav-link">Verified</a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">
                         Other <i class="fa fa-chevron-down"></i>
                         <span class="dropdown">
-                            <a href="/pages/upload-a-map.php" class="nav-link">Upload a Map</a>
-                            <a href="/pages/update-a-map.php" class="nav-link">Update a Map</a>
+                            <a href="pages/upload-a-map.php" class="nav-link">Upload a Map</a>
+                            <a href="pages/update-a-map.php" class="nav-link">Update a Map</a>
                         </span>
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a href="/pages/search.php" class="nav-link">Search</a>
+                    <a href="pages/search.php" class="nav-link">Search</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -165,7 +169,7 @@ $prefix = "/_Projects/mcmaps-full/";
                     if ($data["entries"][$i]["_created"] === $creation_time[$map_index]) {
                         $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
             ?>
-            <a class="map-preview-container" href="#">
+            <a class="map-preview-container" href="pages/map.php?name=<?php echo $data["entries"][$i]["MapName"]; ?>">
                 <div class="map-preview">
                     <img src="<?php echo $map_main_img; ?>" alt="map-image">
                     <div>
@@ -229,7 +233,7 @@ $prefix = "/_Projects/mcmaps-full/";
                     if ($data["entries"][$i]["_modified"] === $updated_time[$map_index]) {
                         $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
             ?>
-            <a class="map-preview-container" href="#">
+            <a class="map-preview-container" href="pages/map.php?name=<?php echo $data["entries"][$i]["MapName"]; ?>">
                 <div class="map-preview">
                     <img src="<?php echo $map_main_img; ?>" alt="map-image">
                     <div>
@@ -259,37 +263,40 @@ $prefix = "/_Projects/mcmaps-full/";
         <div class="footer-container">
             <div class="foot-nav">
                 <a href="index.php" class="nav-link">Latest</a>
-                <a href="/pages/maps/all-maps.php" class="nav-link">All Maps</a>
-                <a href="/pages/verified.php" class="nav-link">Verified</a>
-                <a href="/pages/map-jam.php" class="nav-link">Map Jam</a>
-                <a href="/pages/search.php" class="nav-link">Search</a>
+                <a href="pages/all-maps.php" class="nav-link">All Maps</a>
+                <a href="pages/verified.php" class="nav-link">Verified</a>
+                <a href="pages/map-jam.php" class="nav-link">Map Jam</a>
+                <a href="pages/search.php" class="nav-link">Search</a>
                 <span class="submenu-foot"><span class="nav-link">More <i class="fa fa-chevron-down"></i></span>
                     <span class="submenu-container-foot">
-                        <a href="/pages/upload-a-map.php" class="nav-link nav-link-sub">Upload a Map</a>
-                        <a href="/pages/update-a-map.php" class="nav-link nav-link-sub">Update a Map</a>
+                        <a href="pages/upload-a-map.php" class="nav-link nav-link-sub">Upload a Map</a>
+                        <a href="pages/update-a-map.php" class="nav-link nav-link-sub">Update a Map</a>
+                        <a href="pages/logos-and-guidelines.php" class="nav-link nav-link-sub">Logos and Guidelines</a>
                     </span>
                 </span>
             </div>
 
             <p>Join our Discord Server</p>
-            <a href='https://discord.gg/EBQt3VrX' class="btn"><i class="fab fa-discord"></i><b> DISCORD</b></a>
+            <a href='https://discord.gg/EBQt3VrX' target="_blank" class="btn"><i class="fab fa-discord"></i><b>
+                    DISCORD</b></a>
 
             <p>Visit our Friends</p>
             <span class="referral-container">
-                <a href="https://stickypiston.co/" class="referral">StickyPiston.co</a>
-                <a href="https://www.mccreations.net/" class="referral">MCCreations.net</a>
-                <a href="https://mccontent.net/" class="referral">MCContent.net</a>
+                <a href="https://stickypiston.co/" target="_blank" class="referral">StickyPiston.co</a>
+                <a href="https://www.mccreations.net/" target="_blank" class="referral">MCCreations.net</a>
+                <a href="https://mccontent.net/" target="_blank" class="referral">MCContent.net</a>
             </span>
 
             <p class="disclaimer">
-                <a href="https://www.minecraft.net/">Minecraft</a> was created by <a
-                    href="https://www.minecraft.net/">Mojang AB</a>.
-                <a href="https://www.mcmaps.net/">MCMaps.net</a> is not endorsed or affiliated with <a
-                    href="https://www.minecraft.net/">Mojang AB</a>.
+                <a href="https://www.minecraft.net/" target="_blank">Minecraft</a> was created by <a
+                    href="https://www.minecraft.net/" target="_blank">Mojang AB</a>.
+                <a href="https://www.mcmaps.net/" target="_blank">MCMaps.net</a> is not endorsed or affiliated with <a
+                    href="https://www.minecraft.net/" target="_blank">Mojang AB</a>.
             </p>
 
         </div>
-        <p class="copyright">© 2021 All Rights Reserved | <a href="https://www.mcmaps.net/">MCMaps.net</a></p>
+        <p class="copyright">© 2021 All Rights Reserved | <a href="https://www.mcmaps.net/"
+                target="_blank">MCMaps.net</a></p>
     </footer>
     <script src="js/nav.js" async></script>
 </body>

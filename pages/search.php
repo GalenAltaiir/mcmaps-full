@@ -1,14 +1,10 @@
 <?php
-
 include '../header.php';
 include '../footer.php';
-$prefix = "/_Projects/mcmaps-full/";
-$filter = "";
-if (isset($_GET["Category"])) {
-    $filter = "?filter[MapCategory]=" . $_GET["Category"];
-}
-?>
+include '../functions_api.php';
 
+$prefix = "/_Projects/mcmaps-full/";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,26 +18,32 @@ if (isset($_GET["Category"])) {
     <title>MCMaps | Minecraft Maps</title>
 
     <link rel="stylesheet" href="../css/map-cat/map-cat.css">
-    <link rel="shortcut icon" type="image/jpg" href="img/site-icon.ico" />
+    <link rel="shortcut icon" type="image/jpg" href="../img/site-icon.ico" />
 
     <script src="https://kit.fontawesome.com/9880171930.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <?php headerMod(); ?>
+
+
     <main>
 
-        <section class="maps">
+
+        <section class="maps" id="list">
             <div class="label-long">
-                <h3 class="label-long-title">ALL MAPS</h3>
+                <h3 class="label-long-title">SEARCH</h3>
+                <input id="searchbar" onkeyup="search_map()" type="text" class="search" name="search"
+                    placeholder="Search by map name, author, description, date">
             </div>
+
+            <!-- PHP START  -->
 
             <?php
             // create & initialize a curl session
             $curl = curl_init();
-            echo $url_api = "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps" . $filter;
             // set our url with curl_setopt()
-            curl_setopt($curl, CURLOPT_URL, $url_api);
+            curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
             // return the transfer as a string, also with setopt()
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             // curl_exec() executes the started curl session
@@ -79,17 +81,11 @@ if (isset($_GET["Category"])) {
             }
             ?>
 
-
-
-
-
+            <!-- PHP END -->
 
         </section>
-
     </main>
-
     <?php footMod(); ?>
-
-
     <script src="../js/nav.js" async></script>
+    <script src="../js/search.js"></script>
 </body>

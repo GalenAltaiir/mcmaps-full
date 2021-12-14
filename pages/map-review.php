@@ -3,12 +3,7 @@
 include '../header.php';
 include '../footer.php';
 $prefix = "/_Projects/mcmaps-full/";
-$filter = "";
-if (isset($_GET["Category"])) {
-    $filter = "?filter[MapCategory]=" . $_GET["Category"];
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,15 +28,14 @@ if (isset($_GET["Category"])) {
 
         <section class="maps">
             <div class="label-long">
-                <h3 class="label-long-title">ALL MAPS</h3>
+                <h3 class="label-long-title">MAPS FOR REVIEW</h3>
             </div>
 
             <?php
             // create & initialize a curl session
             $curl = curl_init();
-            echo $url_api = "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps" . $filter;
             // set our url with curl_setopt()
-            curl_setopt($curl, CURLOPT_URL, $url_api);
+            curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/MapReview");
             // return the transfer as a string, also with setopt()
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             // curl_exec() executes the started curl session
@@ -64,7 +58,8 @@ if (isset($_GET["Category"])) {
                 $map_desc = $data["entries"][$map_index]["ShortDescription"];
                 $map_date = date('d M, Y', $data["entries"][$map_index]["_created"]);
             ?>
-            <a class="map-preview-container" href="<?php echo $prefix; ?>pages/map.php?name=<?php echo $map_title; ?>">
+            <a class="map-preview-container"
+                href="<?php echo $prefix; ?>pages/map-review-details.php?name=<?php echo $map_title; ?>">
                 <div class="map-preview">
                     <img src="<?php echo $main_image; ?>" alt="">
                     <div>

@@ -356,6 +356,8 @@ footer .referral-container {
     grid-area: foot;
   }
   footer .foot-nav {
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
     margin-top: 20px;
     display: -ms-grid;
     display: grid;
