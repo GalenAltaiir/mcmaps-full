@@ -10,6 +10,11 @@ $prefix = "/_Projects/mcmaps-full/";
 <html lang="en">
 
 <head>
+    <meta name="description" content="Update your Map on MCMaps.">
+    <meta name="keywords"
+        content="Minecraft, Mincreaft Maps, Adventure, Minigames, Puzzle, PvP, MapJam, Mojang, Steve, McMaps, Maps, Upload">
+    <meta name="author" content="KYODAI">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +45,7 @@ $prefix = "/_Projects/mcmaps-full/";
         </section>
 
         <section class="map-form">
-            <form action="logic/update.php" method="$_POST">
+            <form action="logic/update.php" method="POST" enctype="multipart/form-data">
                 <h2> Submission Form </h2>
                 <label for="MapName">Map Name <b>*</b></label>
                 <input type="text" name="MapName" id="MapName" required>
@@ -80,25 +85,23 @@ $prefix = "/_Projects/mcmaps-full/";
                 <label for="Guide">YouTube Walkthrough</label>
                 <input type="text" name="Guide" id="Guide">
 
-                <label for="MainPic">Main Map Image (Upload)<b>*</b></label>
-                <input type="file" name="MainPic" id="MainPic" required>
+                <label for="MainPic">Main Map Image (URL)</label>
+                <input type="url" name="MainPic" id="MainPic">
 
-                <label for="Gallery1">Gallery Image #1<b>*</b></label>
-                <input type="file" name="Gallery1" id="Gallery1" required>
+                <label for="Gallery1">Gallery Image #1 (URL)</label>
+                <input type="url" name="Gallery1" id="Gallery1">
 
-                <label for="Gallery2">Gallery Image #2<b>*</b></label>
-                <input type="file" name="Gallery2" id="Gallery2" required>
+                <label for="Gallery2">Gallery Image #2 (URL)</label>
+                <input type="url" name="Gallery2" id="Gallery2">
 
-                <label for="Gallery3">Gallery Image #3<b>*</b></label>
-                <input type="file" name="Gallery3" id="Gallery3" required>
+                <label for="Gallery3">Gallery Image #3 (URL)</label>
+                <input type="url" name="Gallery3" id="Gallery3">
 
-                <label for="Gallery4">Gallery Image #4<b>*</b></label>
-                <input type="file" name="Gallery4" id="Gallery4" required>
+                <label for="Gallery4">Gallery Image #4 (URL)</label>
+                <input type="url" name="Gallery4" id="Gallery4">
 
                 <label for="Changelog">Changelog</label>
-                <textarea type="text" name="Changelog" id="Changelog">
-
-                </textarea>
+                <input type="text" name="Changelog" id="Changelog">
 
                 <input type="checkbox" name="agreement" id="agreement" required>
                 <label for="agreement">By checking, I agree to the map submission TOS listed above this form.</label>

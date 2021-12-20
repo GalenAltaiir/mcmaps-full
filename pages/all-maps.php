@@ -4,7 +4,10 @@ include '../header.php';
 include '../footer.php';
 $prefix = "/_Projects/mcmaps-full/";
 $filter = "";
+$cat = "ALL";
 if (isset($_GET["Category"])) {
+    $cat = strtoupper($_GET["Category"]);
+
     $filter = "?filter[MapCategory]=" . $_GET["Category"];
 }
 ?>
@@ -14,6 +17,12 @@ if (isset($_GET["Category"])) {
 <html lang="en">
 
 <head>
+    <meta name="description"
+        content="Download and Play Various Minecraft Maps. Solve puzzles, cross difficult jumps, create your own adventures.">
+    <meta name="keywords"
+        content="Minecraft, Mincreaft Maps, Adventure, Minigames, Puzzle, PvP, MapJam, Mojang, Steve, McMaps, Maps">
+    <meta name="author" content="KYODAI">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,13 +42,13 @@ if (isset($_GET["Category"])) {
 
         <section class="maps">
             <div class="label-long">
-                <h3 class="label-long-title">ALL MAPS</h3>
+                <h3 class="label-long-title"><?php echo $cat; ?> MAPS</h3>
             </div>
 
             <?php
             // create & initialize a curl session
             $curl = curl_init();
-            echo $url_api = "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps" . $filter;
+            $url_api = "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps" . $filter;
             // set our url with curl_setopt()
             curl_setopt($curl, CURLOPT_URL, $url_api);
             // return the transfer as a string, also with setopt()

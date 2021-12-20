@@ -7,6 +7,12 @@ $prefix = "/_Projects/mcmaps-full/";
 <html lang="en">
 
 <head>
+    <meta name="description"
+        content="Download and Play Various Minecraft Maps. Solve puzzles, cross difficult jumps, create your own adventures.">
+    <meta name="keywords"
+        content="Minecraft, Mincreaft Maps, Adventure, Minigames, Puzzle, PvP, MapJam, Mojang, Steve, McMaps, Maps">
+    <meta name="author" content="KYODAI">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,7 +170,7 @@ $prefix = "/_Projects/mcmaps-full/";
             </div>
 
             <?php
-            while ($map_index < $arrayLength) {
+            while ($map_index < 9) {
                 for ($i = 0; $i < $arrayLength; $i++) {
                     if ($data["entries"][$i]["_created"] === $creation_time[$map_index]) {
                         $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
@@ -228,7 +234,7 @@ $prefix = "/_Projects/mcmaps-full/";
             </div>
 
             <?php
-            while ($map_index < $arrayLength) {
+            while ($map_index < 6) {
                 for ($i = 0; $i < $arrayLength; $i++) {
                     if ($data["entries"][$i]["_modified"] === $updated_time[$map_index]) {
                         $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];

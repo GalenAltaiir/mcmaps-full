@@ -57,12 +57,15 @@ $g4 = $prefix . $data["entries"][0]["Gallery"][3]["path"];
 <html lang="en">
 
 <head>
+    <meta name="description" content="Play <?php echo $map_title; ?>. <?php echo $info; ?>">
+    <meta name="keywords"
+        content="<?php echo $map_title, $map_author; ?>Minecraft, Mincreaft Maps, Adventure, Minigames, Puzzle, PvP, MapJam, Mojang, Steve, McMaps, Maps">
+    <meta name="author" content="KYODAI">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- REPLACE TITLE -->
-    <title>MAPNAME</title>
-    <!-- REPLACE TITLE -->
+    <title><?php echo $map_title; ?></title>
 
     <link rel="stylesheet" href="../css/maps/maps.css">
     <script src="https://kit.fontawesome.com/9880171930.js" crossorigin="anonymous"></script>

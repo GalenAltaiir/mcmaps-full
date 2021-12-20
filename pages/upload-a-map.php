@@ -10,6 +10,11 @@ $prefix = "/_Projects/mcmaps-full/";
 <html lang="en">
 
 <head>
+    <meta name="description" content="Upload a playable map for other players to the MCMaps website.">
+    <meta name="keywords"
+        content="Minecraft, Mincreaft Maps, Adventure, Minigames, Puzzle, PvP, MapJam, Mojang, Steve, McMaps, Maps, Upload a Map">
+    <meta name="author" content="KYODAI">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
