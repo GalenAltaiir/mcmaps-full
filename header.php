@@ -1,4 +1,5 @@
 <?php
+
 function headerMod()
 {
     $prefix = "/_Projects/mcmaps-full/";

@@ -4,7 +4,8 @@ include '../footer.php';
 include '../functions_api.php';
 
 $prefix = "/_Projects/mcmaps-full/";
-
+// Turn off all error reporting
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +20,8 @@ $prefix = "/_Projects/mcmaps-full/";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="/img/site-icon.ico" />
-    <title>MCMaps | Minecraft Maps</title>
+    <link rel="shortcut icon" type="image/jpg" href="../img/site-icon.ico" />
+    <title>MCMaps | Maps Upload</title>
 
     <link rel="stylesheet" href="../css/forms/forms.css">
 

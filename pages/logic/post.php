@@ -107,3 +107,8 @@ fetch('/_Projects/mcmaps-full/_db/api/collections/save/MapReview', {
     .then(res => res.json())
     .then(entry => console.log(entry));
 </script>
+
+<?php
+header("Location: http://localhost/_Projects/mcmaps-full/");
+die();
+?>

@@ -10,6 +10,8 @@ if (isset($_GET["Category"])) {
 
     $filter = "?filter[MapCategory]=" . $_GET["Category"];
 }
+// Turn off all error reporting
+error_reporting(0);
 ?>
 
 
@@ -28,10 +30,10 @@ if (isset($_GET["Category"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
-    <title>MCMaps | Minecraft Maps</title>
+    <title>MCMaps | All Maps</title>
 
     <link rel="stylesheet" href="../css/map-cat/map-cat.css">
-    <link rel="shortcut icon" type="image/jpg" href="img/site-icon.ico" />
+    <link rel="shortcut icon" type="image/jpg" href="../img/site-icon.ico" />
 
     <script src="https://kit.fontawesome.com/9880171930.js" crossorigin="anonymous"></script>
 </head>

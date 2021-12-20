@@ -51,7 +51,8 @@ $g2 = $prefix . $data["entries"][0]["Gallery"][1]["path"];
 $g3 = $prefix . $data["entries"][0]["Gallery"][2]["path"];
 $g4 = $prefix . $data["entries"][0]["Gallery"][3]["path"];
 
-
+// Turn off all error reporting
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">

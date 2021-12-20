@@ -1,6 +1,8 @@
 <?php
 require 'functions_api.php';
 $prefix = "/_Projects/mcmaps-full/";
+// Turn off all error reporting
+error_reporting(0);
 
 ?>
 <!DOCTYPE html>
