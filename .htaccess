@@ -1,0 +1,21 @@
+RewriteEngine On
+
+
+##External redirect for url change in browser rules here...
+RewriteCond %{THE_REQUEST} \s/(maps)/map/?\?name=(\S+)\s [NC]
+RewriteRule ^  %1/%2? [R=301,L]
+
+##Internal rewrite here for internal file's serving here.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([^/]*)/(.*)/?$  $1/map.php?name=$2 [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+# removes .php extension
+
+
+# NEED TO REMOVE .php IN SUBDIRECTORIES
+
+
