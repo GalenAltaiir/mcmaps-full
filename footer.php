@@ -2,21 +2,21 @@
 
 function footMod()
 {
-    $prefix = "/_Projects/mcmaps-full/";
+    $prefix = "../";
     echo '<footer>';
     echo '<img src="../img/logo.png" alt="logo">';
     echo '<div class="footer-container">';
     echo '<div class="foot-nav">';
-    echo '<a href="' . $prefix . 'index.php" class="nav-link">Latest</a>';
-    echo '<a href="all-maps.php" class="nav-link">All Maps</a>';
-    echo '<a href="verified.php" class="nav-link">Verified</a>';
-    echo '<a href="map-jam.php" class="nav-link">Map Jam</a>';
-    echo '<a href="search.php" class="nav-link">Search</a>';
+    echo '<a href="' . $prefix . 'index" class="nav-link">Latest</a>';
+    echo '<a href="all" class="nav-link">All Maps</a>';
+    echo '<a href="verified" class="nav-link">Verified</a>';
+    echo '<a href="events" class="nav-link">Map Jam</a>';
+    echo '<a href="search" class="nav-link">Search</a>';
     echo '<span class="submenu-foot"><span class="nav-link">More <i class="fa fa-chevron-down"></i></span>';
     echo '<span class="submenu-container-foot">';
-    echo '<a href="upload-a-map.php" class="nav-link nav-link-sub">Upload a Map</a>';
-    echo '<a href="update-a-map.php" class="nav-link nav-link-sub">Update a Map</a>';
-    echo '<a href="logos-and-guidelines.php" class="nav-link nav-link-sub">Logos and Guidelines</a>';
+    echo '<a href="upload-a-map" class="nav-link nav-link-sub">Upload a Map</a>';
+    echo '<a href="update-a-map" class="nav-link nav-link-sub">Update a Map</a>';
+    echo '<a href="logos-and-guidelines" class="nav-link nav-link-sub">Logos and Guidelines</a>';
     echo '</span>';
     echo '</span>';
     echo '</div>';

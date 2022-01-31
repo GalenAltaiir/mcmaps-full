@@ -1,8 +1,8 @@
 <?php
 require 'functions_api.php';
-$prefix = "/_Projects/mcmaps-full/";
+$prefix = "";
 // Turn off all error reporting
-error_reporting(0);
+/* error_reporting(0); */
 
 ?>
 <!DOCTYPE html>
@@ -29,48 +29,44 @@ error_reporting(0);
 
 <body>
     <header class="header">
-        <a href="<?php echo $prefix; ?>index.php" class="nav-logo"><img src="img/logo.png" alt="logo"></a>
+        <a href="<?php echo $prefix; ?>index" class="nav-logo"><img src="img/logo.png" alt="logo"></a>
         <nav class="navbar">
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="<?php echo $prefix; ?>index.php" class="nav-link">Latest </a>
+                    <a href="<?php echo $prefix; ?>index" class="nav-link">Latest </a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">
                         Map Categories <i class="fa fa-chevron-down"></i>
                         <span class="dropdown">
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php" class="nav-link">All Maps</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Puzzle"
-                                class="nav-link">Puzzle</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Parkour"
-                                class="nav-link">Parkour</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Minigames"
-                                class="nav-link">Minigames</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Maze" class="nav-link">Maze</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=PvP" class="nav-link">PvP</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Horror"
-                                class="nav-link">Horror</a>
-                            <a href="<?php echo $prefix; ?>pages/all-maps.php?Category=Other" class="nav-link">Other</a>
+                            <a href="<?php echo $prefix; ?>all" class="nav-link">All Maps</a>
+                            <a href="<?php echo $prefix; ?>all?Category=Puzzle" class="nav-link">Puzzle</a>
+                            <a href="<?php echo $prefix; ?>all?Category=Parkour" class="nav-link">Parkour</a>
+                            <a href="<?php echo $prefix; ?>all?Category=Minigames" class="nav-link">Minigames</a>
+                            <a href="<?php echo $prefix; ?>all?Category=Maze" class="nav-link">Maze</a>
+                            <a href="<?php echo $prefix; ?>all?Category=PvP" class="nav-link">PvP</a>
+                            <a href="<?php echo $prefix; ?>all?Category=Horror" class="nav-link">Horror</a>
+                            <a href="<?php echo $prefix; ?>all?Category=Other" class="nav-link">Other</a>
                         </span>
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo $prefix; ?>pages/map-jam.php" class="nav-link">Map Jam</a>
+                    <a href="<?php echo $prefix; ?>events" class="nav-link">Map Jam</a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/verified.php" class="nav-link">Verified</a>
+                    <a href="verified" class="nav-link">Verified</a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">
                         Other <i class="fa fa-chevron-down"></i>
                         <span class="dropdown">
-                            <a href="pages/upload-a-map.php" class="nav-link">Upload a Map</a>
-                            <a href="pages/update-a-map.php" class="nav-link">Update a Map</a>
+                            <a href="upload-a-map" class="nav-link">Upload a Map</a>
+                            <a href="update-a-map" class="nav-link">Update a Map</a>
                         </span>
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/search.php" class="nav-link">Search</a>
+                    <a href="search" class="nav-link">Search</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -91,7 +87,7 @@ error_reporting(0);
         $curl = curl_init();
 
         // set our url with curl_setopt()
-        curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
+        curl_setopt($curl, CURLOPT_URL, $url . "_db/api/collections/get/maps");
 
         // return the transfer as a string, also with setopt()
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -112,25 +108,25 @@ error_reporting(0);
         while ($i < $arrayLength) {
             $fetched_id = $data["entries"][$i]["_id"];
             if ($fetched_id == $id) {
-                $main_image = $prefix . $data["entries"][$i]["MainImage"]["path"];
+                $main_image = $data["entries"][$i]["MainImage"]["path"];
                 $spot_name = $data["entries"][$i]["MapName"];
                 $spot_author = $data["entries"][$i]["Author"];
                 $spot_desc = $data["entries"][$i]["ShortDescription"];
                 $spot_updated = $data["entries"][$i]["_modified"];
+                $spot_name_url = str_replace(" ", "-", $spot_name);
             }
             $i++;
         }
         ?>
         <section class="spotlight">
-            <a href="pages/map.php?name=<?php echo $spot_name; ?>" class="cover-link"></a>
+            <a href="maps/<?php echo $spot_name_url; ?>" class="cover-link"></a>
             <div class="spot-image">
                 <img src='<?php echo $main_image; ?>' alt="spotlight-image">
                 <h2 class="label">SPOTLIGHT</h2>
             </div>
 
             <p class="spot-title"><?php echo $spot_name; ?></p>
-            <p class="spot-date"><?php echo date('d M, Y', $spot_updated); ?></p>
-            <p class="spot-author"><?php echo $spot_author; ?></p>
+            <p class="spot-author"><?php echo date('d M, Y', $spot_updated)  . " • " . $spot_author; ?></p>
             <p class="spot-description"><?php echo $spot_desc; ?></p>
         </section>
 
@@ -138,7 +134,7 @@ error_reporting(0);
         // create & initialize a curl session
         $curl = curl_init();
         // set our url with curl_setopt()
-        curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
+        curl_setopt($curl, CURLOPT_URL, $url . "_db/api/collections/get/maps");
         // return the transfer as a string, also with setopt()
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         // curl_exec() executes the started curl session
@@ -150,7 +146,7 @@ error_reporting(0);
         /* var_dump(json_decode($output, true)); */
         $data = json_decode($output, true);
         // ARRAY SETTING
-        $arrayLength = count($data["entries"],); // offset by 1 as arrays start at 0;
+        $arrayLength = count($data["entries"]); // offset by 1 as arrays start at 0;
         $map_index = 0;
 
         $creation_time = array();
@@ -176,8 +172,11 @@ error_reporting(0);
                 for ($i = 0; $i < $arrayLength; $i++) {
                     if ($data["entries"][$i]["_created"] === $creation_time[$map_index]) {
                         $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
+                        $map_title = $data["entries"][$i]["MapName"];
+                        $map_url = str_replace(" ", "-", $map_title);
+
             ?>
-            <a class="map-preview-container" href="pages/map.php?name=<?php echo $data["entries"][$i]["MapName"]; ?>">
+            <a class="map-preview-container" href="maps/<?php echo $map_url; ?>">
                 <div class="map-preview">
                     <img src="<?php echo $map_main_img; ?>" alt="map-image">
                     <div>
@@ -202,7 +201,7 @@ error_reporting(0);
         // create & initialize a curl session
         $curl = curl_init();
         // set our url with curl_setopt()
-        curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/collections/get/maps");
+        curl_setopt($curl, CURLOPT_URL, $url . "_db/api/collections/get/maps");
         // return the transfer as a string, also with setopt()
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         // curl_exec() executes the started curl session
@@ -214,7 +213,7 @@ error_reporting(0);
         /* var_dump(json_decode($output, true)); */
         $data = json_decode($output, true);
         // ARRAY SETTING
-        $arrayLength = count($data["entries"],); // offset by 1 as arrays start at 0;
+        $arrayLength = count($data["entries"]); // offset by 1 as arrays start at 0;
         $map_index = 0;
 
         $updated_time = array();
@@ -240,8 +239,10 @@ error_reporting(0);
                 for ($i = 0; $i < $arrayLength; $i++) {
                     if ($data["entries"][$i]["_modified"] === $updated_time[$map_index]) {
                         $map_main_img = $prefix . $data["entries"][$i]["MainImage"]["path"];
+                        $map_title = $data["entries"][$i]["MapName"];
+                        $map_url = str_replace(" ", "-", $map_title);
             ?>
-            <a class="map-preview-container" href="pages/map.php?name=<?php echo $data["entries"][$i]["MapName"]; ?>">
+            <a class="map-preview-container" href="maps/<?php echo $map_url; ?>">
                 <div class="map-preview">
                     <img src="<?php echo $map_main_img; ?>" alt="map-image">
                     <div>
@@ -270,16 +271,16 @@ error_reporting(0);
         <img src="img/logo.png" alt="logo">
         <div class="footer-container">
             <div class="foot-nav">
-                <a href="index.php" class="nav-link">Latest</a>
-                <a href="pages/all-maps.php" class="nav-link">All Maps</a>
-                <a href="pages/verified.php" class="nav-link">Verified</a>
-                <a href="pages/map-jam.php" class="nav-link">Map Jam</a>
-                <a href="pages/search.php" class="nav-link">Search</a>
+                <a href="index" class="nav-link">Latest</a>
+                <a href="all" class="nav-link">All Maps</a>
+                <a href="verified" class="nav-link">Verified</a>
+                <a href="events" class="nav-link">Map Jam</a>
+                <a href="search" class="nav-link">Search</a>
                 <span class="submenu-foot"><span class="nav-link">More <i class="fa fa-chevron-down"></i></span>
                     <span class="submenu-container-foot">
-                        <a href="pages/upload-a-map.php" class="nav-link nav-link-sub">Upload a Map</a>
-                        <a href="pages/update-a-map.php" class="nav-link nav-link-sub">Update a Map</a>
-                        <a href="pages/logos-and-guidelines.php" class="nav-link nav-link-sub">Logos and Guidelines</a>
+                        <a href="upload-a-map" class="nav-link nav-link-sub">Upload a Map</a>
+                        <a href="update-a-map" class="nav-link nav-link-sub">Update a Map</a>
+                        <a href="logos-and-guidelines" class="nav-link nav-link-sub">Logos and Guidelines</a>
                     </span>
                 </span>
             </div>

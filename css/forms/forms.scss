@@ -3,6 +3,11 @@
 @import '../general/config.scss';
 @import '../general/typography.scss';
 
+
+.map-container{
+    background-color: green;
+}
+
 body {
     display: grid;
 
@@ -81,6 +86,8 @@ main{
                 padding: 10px;
                 background-color: $bg-alt;
                 border: none;
+                color: white;
+                
             }
 
             label{

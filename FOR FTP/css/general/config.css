@@ -1,0 +1,29 @@
+html,
+body,
+button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  background-color: #0d0607;
+}
+
+@media only screen and (max-width: 1037px) {
+  body {
+    margin-top: 200px;
+  }
+}
+
+.btn, button {
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+  background: #E32D3D;
+  border: none;
+  margin-top: 5px;
+}
+
+img {
+  z-index: 0;
+}
+/*# sourceMappingURL=config.css.map */

@@ -40,13 +40,14 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header .nav-logo img {
@@ -509,6 +510,7 @@ main .verified .ver-build {
 
 main .verified .ver-build img {
   width: 100px;
+  border-radius: 50px;
 }
 
 main .verified .ver-build .ver-name {

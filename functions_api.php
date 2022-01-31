@@ -1,12 +1,19 @@
 <?php
+// $url = "http://mcmaps.great-site.net/";
+$url = "http://localhost/";
+$token = "?token=c68eab4604229ac0e49ab86729ac69";
+// $url = "http://localhost/";
+
 function getSpotlightId()
 {
-
+    // $url = "http://mcmaps.great-site.net/";
+    global $url;
+    global $token;
     // create & initialize a curl session
     $curl = curl_init();
 
     // set our url with curl_setopt()
-    curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/singletons/get/SpotlightMap?token=3bc3e2940425ec328e83a9e54500fb");
+    curl_setopt($curl, CURLOPT_URL, $url . "_db/api/singletons/get/SpotlightMap" . $token);
 
     // return the transfer as a string, also with setopt()
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -26,10 +33,14 @@ function getSpotlightId()
 
 function getCurrentEvent()
 {
+    global $url;
+    global $token;
+    // $url = "http://mcmaps.great-site.net/";
+
     // create & initialize a curl session
     $curl = curl_init();
     // set our url with curl_setopt()
-    curl_setopt($curl, CURLOPT_URL, "http://localhost/_Projects/mcmaps-full/_db/api/singletons/get/ActiveEvent?token=3bc3e2940425ec328e83a9e54500fb");
+    curl_setopt($curl, CURLOPT_URL, $url . "_db/api/singletons/get/ActiveEvent" . $token);
     // return the transfer as a string, also with setopt()
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     // curl_exec() executes the started curl session
