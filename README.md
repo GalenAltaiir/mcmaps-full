@@ -9,4 +9,4 @@ Main Stack
 - Cockpit CMS (PHP)
 - SaSS
 
-This code is to not be redistributed as it is the intellectual property of McMaps. Only available to recruiters and upon request from the developer.
+This code is to not be redistributed as it is the intellectual property of McMaps. Only available for viewing for recruitment purposes.
